@@ -217,8 +217,8 @@ var Questions = {
 		new Question(
 			"contact hmody3000",
 			[
-				'Alright.<ul><li> <a href="https://t.me/hmody_3000" aria-label="hmody3000 в телеграм">Telegram: @hmody_3000</a><li> <a href="javascript: //" aria-label="электронная почта hmody3000" onclick="return mail(this);">contact@'+ window.location.hostname +'</a> <span id="copied" style="display: none; opacity: 0;"></span></ul>',
-				'Хорошо.<ul><li> <a href="https://t.me/hmody_3000" aria-label="hmody3000 at telegram">Telegram: @hmody_3000</a><li> <a href="javascript: //" aria-label="e-mail of hmody3000" onclick="return mail(this);">contact@'+ window.location.hostname +'</a> <span id="copied" style="display: none; opacity: 0;"></span></ul>'
+				'Alright.<ul><li> <a href="https://t.me/hmody_3000" aria-label="hmody3000 в телеграм">Telegram: @hmody_3000</a><li> <a href="javascript: //" aria-label="электронная почта hmody3000" onclick="return mail(this);">hmody3000@yopmail.com</a> <span id="copied" style="display: none; opacity: 0;"></span></ul>',
+				'Хорошо.<ul><li> <a href="https://t.me/hmody_3000" aria-label="hmody3000 at telegram">Telegram: @hmody_3000</a><li> <a href="javascript: //" aria-label="e-mail of hmody3000" onclick="return mail(this);">hmody3000@yopmail.com</a> <span id="copied" style="display: none; opacity: 0;"></span></ul>'
 			],
 			[
 				"thank you",
