@@ -1,0 +1,351 @@
+var deny_answer_repeat = function() { Questions.getByName(this.name).changeTo(); Answers.disable(this.name); }
+
+var Answers = {
+	getByName: function(name) {
+		for(var i = 0; i < this.list.length; i++) {
+			if(this.list[i].name == name)
+				return this.list[i];
+		}
+		console.log("could not find answer:", name);
+	},
+	list: [
+
+		new Answer(
+			"nice to meet you",
+			[
+				"Hello! Nice to meet you!",
+				"Привет! Приятно познакомиться!",
+			]
+		),
+
+		new Answer(
+			"who is hmody3000",
+			[
+				"What do you know about hmody3000?",
+				"Что ты знаешь о hmody3000?",
+			],
+			deny_answer_repeat
+		),
+
+		new Answer(
+			"okay thank you",
+			[
+				"Okay, I got it",
+				"Окей, понял",
+				"Окей, поняла"
+			],
+			"thank you"
+		),
+
+		new Answer(
+			"i want to contact hmody3000 1",
+			[
+				"I want to contact hmody3000",
+				"Я хочу связаться с hmody3000",
+			],
+			"why contact hmody3000"
+		),
+
+		new Answer(
+			"show me coubs",
+			[
+				"I have no time, show me Coubs!",
+				"Нет времени, покажи мне <span aria-label=\"коубы\">Coub'ы</span>!",
+			],
+			"show coub"
+		),
+
+		new Answer(
+			"just contact hmody3000",
+			[
+				"I just wanted to contact hmody3000",
+				"Не важно. Просто дай мне его контакты",
+			],
+			"contact hmody3000"
+		),
+
+		new Answer(
+			"i want to contact him",
+			[
+				"I want to contact him",
+				"Я хочу связаться с ним",
+			],
+			"why contact hmody3000"
+		),
+
+		new Answer(
+			"from search engine",
+			[
+				"From the search engine",
+				"Из поисковой системы",
+			]
+		),
+
+		new Answer(
+			"from other",
+			[
+				"...",
+				"Из другого места",
+			]
+		),
+
+		new Answer(
+			"i want to contact hmody3000",
+			[
+				"I want to contact hmody3000",
+				"Я хочу связаться с hmody3000",
+			],
+			"why contact hmody3000"
+		),
+
+		new Answer(
+			"tlauncher-get source",
+			[
+				"I want to get source code",
+				"Хочу попросить исходники TLauncher",
+			],
+			deny_answer_repeat
+		),
+
+		new Answer(
+			"i dunno why im here",
+			[
+				"<span style=\"white-space: nowrap\" aria-hidden=\"true\" aria-label=\"Shrug smile\">¯\\_(ツ)_/¯</span>",
+				"На самом деле не знаю <span style=\"white-space: nowrap\" aria-label=\"Пожимащий плечами смайлик\">¯\\_(ツ)_/¯</span>",
+			],
+			deny_answer_repeat
+		),
+
+		new Answer(
+			"tlauncher-thank",
+			[
+				"I want to thank him <span aria-label=\"Cute smile\">:3</span>",
+				"Хочу выразить благодарность",
+				"Хочу поблагодарить автора <span aria-label=\"Милый смайлик\">:3</span>",
+			],
+			deny_answer_repeat
+		),
+
+		new Answer(
+			"tlauncher-thank-bymyself",
+			[
+				"I want to do it myself",
+				"Я хочу сделать это сам",
+				"Я хочу сделать это сама",
+			],
+			"contact hmody3000"
+		),
+
+		new Answer(
+			"tlauncher-contact",
+			[
+				"I want to contact about TLauncher",
+				"Хочу связаться по вопросу, связанном с TLauncher",
+			]
+		),
+
+		new Answer(
+			"tlauncher-suggestion",
+			[
+				"I have a suggestion",
+				"У меня есть предложение",
+			],
+			"contact hmody3000"
+		),
+
+		new Answer(
+			"tlauncher-blah blah",
+			[
+				"I just want to talk to him",
+				"Просто хочу с ним поговорить",
+			],
+			"contact hmody3000"
+		),
+
+		new Answer(
+			"tlauncher-have problem",
+			[
+				"I have some problem with TL",
+				"Я испытываю кое-какие проблемы с лаунчером",
+			]
+		),
+
+		new Answer(
+			"tlauncher-contact support via social network",
+			[
+				"I'd like to contact via Facebook",
+				"Мне удобнее общаться ВКонтакте",
+			]
+		),
+
+		new Answer(
+			"tlauncher-contact support email",
+			[
+				"I'd like to contact via e-mail",
+				"Было бы комортнее, если бы мы общались по e-mail",
+			]
+		),
+
+		new Answer(
+			"tlauncher-contact support email though",
+			[
+				"Nope, E-mail would be better",
+				"Не, лучше я напишу им на почту",
+			],
+			"tlauncher-contact support email"
+		),
+
+		new Answer(
+			"tlauncher-anyway contact hmody3000",
+			[
+				"No, I need developer, not support",
+				"Нет, мне именно нужен разработчик, а не поддержка",
+			],
+			"contact hmody3000"
+		),
+
+		new Answer(
+			"from tlauncher 2",
+			[
+				"Well, there's something else...",
+				"Есть ещё кое-что...",
+			],
+			deny_answer_repeat
+		),
+
+		new Answer(
+			"thank you",
+			[
+				"Thank you!",
+				"Спасибо!",
+			]
+		),
+
+		new Answer(
+			"no nothing",
+			[
+				"No, thank you",
+				"Ну... вроде бы всё",
+			]
+		),
+
+		new Answer(
+			"show coub",
+			[
+				"Yeah, I'd like to!",
+				"Да, покажи коубы!",
+			]
+		),
+
+		new Answer(
+			"moar coub",
+			[
+				"MOAR <span aria-label=\"Press K on your keyboard to show next Coub\">[K]</span>",
+				"Покажи ещё один! <span aria-label=\"Нажмите кнопку «О» в русской раскладке или букву «K» в английской, чтобы показать следующий коуб\">[K]</span>",
+			],
+			function() {
+				Coubs.next();
+			}
+		),
+
+		new Answer(
+			"previous coub",
+			[
+				"Wait, previous one please <span aria-label=\"Press J on your keyboard to show previous Coub\">[J]</span>",
+				"Предыдущий пожалуйста <span aria-label=\"Нажмите кнопку «О» в русской раскладке или букву «J» в английской, чтобы показать другой коуб\">[J]</span>",
+			],
+			function() {
+				Coubs.previous();
+			}
+		),
+
+		new Answer(
+			"no more coub",
+			[
+				"This would be enough. Thank you!",
+				"Спасибо, насмотрелся",
+				"Спасибо, насмотрелась",
+			],
+			"end"
+		),
+
+		new Answer(
+			"well okay",
+			[
+				"Well, okay then",
+				"Ну ладно тогда",
+			],
+			"end"
+		),
+
+		new Answer(
+			"end",
+			[
+				"No, thank you",
+				"Нет, спасибо.",
+			]
+		),
+
+		new Answer(
+			"reload",
+			[
+				"&lt;clear memory&gt;",
+				"&lt;стереть память&gt;",
+			],
+			function() { window.location = window.location; }
+		),
+		
+	],
+	disable: function(name) {
+		this.getByName(name).isPermitted = function() {
+			return false;
+		}
+	}
+};
+
+Answers.list.push(new Answer(
+	"back",
+	[
+		"&laquo; Back",
+		"&laquo; Обратно"
+	],
+	function() {
+		Questions.last.changeTo(true);
+	}
+));
+
+var answer_female = new Answer(
+	"im female",
+	[
+		"",
+		"Хей, я девушка"
+	]
+);
+answer_female.action = function() {
+	sex = 1;
+}
+answer_female.isPermitted = function() {
+	return lang == 1 && sex == 0;
+}
+
+var answer_tlauncher = new Answer(
+	"from tlauncher",
+	[
+		"",
+		"Из TLauncher",
+	]
+);
+answer_tlauncher.isPermitted = function() {
+	return lang == 1;
+}
+
+if(lang == 0) {
+	$.each(Answers.list, function(k, v) {
+		if(v.destination == 'why contact hmody3000') {
+			v.destination = 'contact hmody3000';
+		}
+	});
+}
+
+Answers.list.push(answer_female);
+Answers.list.push(answer_tlauncher);

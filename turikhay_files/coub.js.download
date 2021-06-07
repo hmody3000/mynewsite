@@ -1,0 +1,133 @@
+function Coub(permalink, width, height) {
+	this.permalink = permalink;
+	this.width = width;
+	this.height = height;
+
+	this.ratio = this.width / this.height;
+}
+
+var Coubs = {
+	list: [],
+	seen: [],
+	played: [],
+	index: -1,
+	playing: false,
+	prepare: function() {
+		this.playing = true;
+		$('#coub_frame').on("load", function(){ var coub_frame = $('#coub_frame'); if(coub_frame.attr('src') == '') return; coub_frame.animate({opacity: 1}, 1000); })
+		$('.backstretch').animate({opacity: 0.1}, 500);
+		$('#quest_answers').animate({opacity: 0.25}, 500);
+		$('#quest').animate({width: $(document).width() * .75}, 500, function() {
+			this.next();
+		}.bind(this));
+	},
+	onResize: function(func) {
+		if(this.playing) {
+			$('#quest').width($(document).width() * .75);
+			func();
+		}
+	},
+	postpone: function() {
+		this.playing = false;
+		$('.backstretch').animate({opacity: 1.0}, 500);
+		$('#quest').width('');
+		$('#quest_answers').animate({opacity: 1.0}, 500);
+		$('body').height('');
+	},
+	isEmpty: function() {
+		return this.list.length == 0;
+	},
+	haveSeen: function(findIndex) {
+		if(findIndex == -1)
+		{
+			return true;
+		}
+		for(var i = 0; i < this.seen.length; i++) {
+			if(this.seen[i] == findIndex)
+				return true;
+		}
+		return false;
+	},
+	next: function() {
+		if(this.seen.length >= this.list.length) {
+			this.seen = [];
+		}
+
+		while(this.haveSeen(this.index)) {
+			this.index = random(0, this.list.length-1);
+		}
+
+		this.seen.push(this.index);
+		this.played.push(this.index);
+
+		this.apply();
+	},
+	previous: function() {
+		if(this.played.length < 2) {
+			return;
+		}
+		this.index = this.played[this.played.length - 2];
+		this.played = this.played.slice(0, this.played.length - 1);
+		this.apply();
+	},
+	apply: function() {
+		if(this.index == -1) {
+			this.index = random(0, this.list.length-1);
+		}
+
+		if(this.index < 0 || this.index >= this.list.length) {
+			throw ["out of bounds", this.index, this.list.length];
+		}
+
+		var
+			coub = this.list[this.index],
+			width = $('#coub_holder').width() || 480,
+			height = width / coub.ratio,
+			coubFrame = $('#coub_frame');
+
+		if(height > $(window).height() * .9) {
+			height = $(window).height() * .9;
+			width = height * coub.ratio;
+		}
+
+		$('#coub_frame')
+			.attr('src', '')
+			.attr('width', width)
+			.css('opacity', 1)
+			.animate({height: height}, 400, function() {
+				//if($(document).height() > $('body').height()) {
+					$('body').height($(document).height() * 1.2);
+				//}
+				$('#coub_frame')
+				.attr('src', "https://coub.com/embed/"+ coub.permalink +"?muted=false&autostart=true&originalSize=false&hideTopBar=false&startWithHD=true");
+				$('html, body').animate({
+    				scrollTop: $('#quest').height() < $(window).height()? $('#quest').offset().top - $(window).height() / 2 + $('#quest').height() / 2 : $('#coub_frame').offset().top - $(window).height() / 2 + $('#coub_frame').height() / 2
+				}, 100);
+			});
+
+		_paq.push(['trackEvent', 'coub_changed', coub.permalink]);
+	}
+}
+
+$(window).resize(function() {
+	Coubs.onResize(function() {
+
+	$('#quest').width($(document).width() * .75);
+
+	var
+		coub = this.list[this.index],
+		width = $('#coub_holder').width() || 480,
+		height = width / coub.ratio,
+		coubFrame = $('#coub_frame');
+
+	if(height > $(window).height() * .9) {
+		height = $(window).height() * .9;
+		width = height * coub.ratio;
+	}
+
+	$('#coub_frame')
+	.attr('width', width)
+	.css('height', height);
+
+	$('html, body').scrollTop($('#quest').height() < $(window).height()? $('#quest').offset().top - $(window).height() / 2 + $('#quest').height() / 2 : $('#coub_frame').offset().top - $(window).height() / 2 + $('#coub_frame').height() / 2);
+}.bind(Coubs))});

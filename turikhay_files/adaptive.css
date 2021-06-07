@@ -1,0 +1,19 @@
+@media screen and (max-width: 800px), screen and (max-height: 600px) {
+    body {
+		min-height: 500px;
+        font-size: 1em;
+    }
+
+    #quest {
+	  width: 90%;
+	  padding: 2.5% 5% 2.5% 5%;
+	  background: rgba(0, 0, 0, .4);
+	}
+
+	#quest_head {
+	  font-weight: bold;
+	  font-size: 1.5em;
+	  
+	  text-shadow: 0 0 .2em rgba(0, 0, 0, .5);
+	}
+}

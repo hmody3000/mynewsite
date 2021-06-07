@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<!-- saved from url=(0021)https://hmody3000.com/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+  <meta name="viewport" content="width=device-width">
+  <title>hmody3000</title>
+
+  <meta name="keywords" content="hmody3000">
+  <meta name="description" content="На данной странице вы можете найти контакты для связи с hmody3000.">
+  <link rel="canonical" href="https://hmody3000.com/">
+  
+  <link rel="stylesheet" type="text/css" href="./turikhay_files/main.css">
+  <link rel="stylesheet" type="text/css" href="./turikhay_files/adaptive.css">
+
+  <script type="text/javascript" async="" src="./turikhay_files/analytics.js.download"></script><script type="text/javascript" async="" defer="" src="https://tracker.turikhay.com/piwik/piwik.js"></script><script type="text/javascript" src="./turikhay_files/jquery.js.download"></script>
+  <script type="text/javascript" src="./turikhay_files/jquery.backstretch.js.download"></script>
+  <script type="text/javascript" src="./turikhay_files/clipboard.js.download"></script>
+
+  <script type="text/javascript" src="./turikhay_files/index.js.download"></script>
+  <script type="text/javascript" src="./turikhay_files/questions.js.download"></script>
+  <script type="text/javascript" src="./turikhay_files/answers.js.download"></script>
+
+  <script type="text/javascript" src="./turikhay_files/coub.js.download"></script>
+  <script type="text/javascript" src="./turikhay_files/coub.list.js.download"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async="" src="./turikhay_files/js"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-130409559-1');
+  </script>
+
+  <!-- Matomo -->
+  <script type="text/javascript">
+    var _paq = _paq || [];
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    _paq.push(['enableHeartBeatTimer', 30]);
+    (function() {
+      var u="//tracker.turikhay.com/piwik/";
+      _paq.push(['setTrackerUrl', u+'piwik.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+  <!-- End Matomo Code -->
+
+  <style>
+  </style>
+</head>
+<body style="">
+ <div style="background-image: url('https://imgur.com/2XKOJO6');">
+  <div style="width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 2;">
+  <div id="quest" role="main" style="padding-top: 30px;">
+    <div id="quest" role="main">
+      <h1 id="quest_head" tabindex="0">Welcome!</h1>
+      <div id="quest_body" tabindex="0">Hello! How can I help you?</div>
+      <noindex>
+      <div id="quest_answers" style="" tabindex="0"><button id="answer_nice to meet you" class="quest_answer">Hello! Nice to meet you!</button><button id="answer_who is turikhay" class="quest_answer">What do you know about turikhay?</button><button id="answer_i want to contact turikhay 1" class="quest_answer">I want to contact turikhay</button><button id="answer_show me coubs" class="quest_answer">I have no time, show me Coubs!</button></div>
+      </noindex>
+    </div>
+  </div>
+  
+  <script type="text/javascript">
+
+  function reverse(string) {
+    return string.split('').reverse().join('');
+  }
+
+  if(!lang) {
+    $('html').attr('lang', 'en');
+  }
+
+  window.onload = function() {
+    var quest_head = document.getElementById("quest_head");
+    if(quest_head.innerHTML == "") {
+      quest_head.innerHTML = "Добро пожаловать";
+      var quest_answers = document.getElementById("quest_answers");
+      quest_answers.style.display = "block";
+    }
+  }
+
+  $.extend(clipboard, {
+    html: function(elem) {
+      this.copy($(elem).html());
+
+      var copied = $('#copied');
+      copied.html(lang? "[проверьте буфер обмена]" : "[check clipboard]");
+      blink(copied);
+      return true;
+    }
+  });
+
+  $.backstretch([  
+    {
+      url: "https://i.imgur.com/2XKOJO6.jpg",
+      alt: (lang?
+            "На фоне изображение озера на закате."
+            : "In the background there is the image of a lake at the sunset."
+      )
+    }
+  ],
+  {
+    fade: 750
+  });
+
+  $(document).keydown(function(e) {
+    switch(e.which) {
+        case 75: // K"
+          if(Coubs.playing) {
+            _paq.push(['trackEvent', 'coub_changed_button', 'K']);
+            Coubs.next();
+          }
+          break;
+        case 74: // J
+          if(Coubs.playing) {
+            Coubs.previous();
+          }
+          break;
+        default: return; // exit this handler for other keys
+    }
+    //e.preventDefault(); // prevent the default action (scroll / move caret)
+  });
+
+  </script><div class="backstretch" style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; height: 600px; width: 1366px; z-index: -999999; position: fixed;"><div class="backstretch-item" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 100%; height: 100%; z-index: -999999;"><img alt="In the background there is the image of a lake at the sunset." src="./turikhay_files/summer-sunset.jpg" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 1366px; height: 914.446px; max-width: none; inset: -157.223px auto auto 0px;"></div></div>
+
+
+</body></html>

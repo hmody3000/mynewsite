@@ -1,0 +1,104 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,cyrillic);
+
+html, body
+{
+    width: 100%;
+    height: 100%;
+}
+
+
+body {
+  margin: 0 auto;
+  cursor: default;
+  font-size: 1.5em;
+  background-image: url('https://i.imgur.com/2XKOJO6.jpg');
+}
+
+button {
+  font-size: inherit;
+}
+
+body, button {
+  font-family: 'Open Sans', sans-serif;
+  background: black;
+  color: white;
+}
+
+a {
+  color: white;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #ccc;
+  text-decoration: underline;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a img {
+  border: none;
+}
+
+ul {
+  padding: 0 0 0 1.5em;
+  list-style-type: disc;
+  list-style-position: inside;
+}
+
+small {
+  font-size: .75em;
+}
+
+#quest {
+  /*display: inline-block;*/
+  width: 30em;
+  padding: 1em;
+  background: rgba(0, 0, 0, .4);
+}
+
+#quest_head {
+  font-weight: bold;
+  font-size: 2em;
+  margin: 0;
+  
+  text-shadow: 0 0 .2em rgba(0, 0, 0, .5);
+}
+
+#quest_body {
+  /*text-align: justify;*/
+}
+
+#quest_answers {
+}
+
+.quest_answer {
+  text-align: start;
+  cursor: pointer;
+  margin: .75em 0 .75em 0;
+  padding: 1em;
+  padding-left: 1em;
+  background: rgba(0, 0, 0, .25);
+  border: .1em solid rgba(127, 127, 127, .5);
+  width: 100%;
+  display: block;
+}
+
+.quest_answer:hover {
+  background: rgba(0, 0, 0, .5);
+}
+
+#coub_holder {
+	text-align: center;
+}
+
+.sr-only {
+  position:absolute;
+  left:-10000px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+}

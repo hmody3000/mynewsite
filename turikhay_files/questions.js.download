@@ -1,0 +1,333 @@
+var Questions = {
+	last: null,
+	current: null,
+	getByName: function(name) {
+		for(var i = 0; i < this.list.length; i++) {
+			if(this.list[i].name == name)
+				return this.list[i];
+		}
+		console.log("could not find question:", name);
+	},
+	list: [
+		new Question(
+			"start",
+			[
+				"Hello! How can I help you?",
+				"Привет! Чем могу помочь?"
+			],
+			[
+				"nice to meet you",
+				"who is hmody3000",
+				"i want to contact hmody3000 1",
+				"show me coubs"
+			],
+			[
+				"Welcome!",
+				"Добро пожаловать!"
+			]
+		),
+
+		new Question(
+			"nice to meet you",
+			[
+				"Wow! It's lonely here, so I'm glad that you're here! What do you want?",
+				"Охо-хо! А мне-то как! Ко мне редко заходят, поэтому даже не с кем и поговорить. Откуда ты к нам пришёл?",
+				"Охо-хо! А мне-то как! Ко мне редко заходят, поэтому даже не с кем и поговорить. Откуда ты к нам пришла?",
+			],
+			[
+				"just contact hmody3000",
+				"i dunno why im here",
+				"im female",
+			]
+		),
+
+		new Question(
+			"who is hmody3000",
+			[
+				"<b>hmody3000</b> doesn't really want to speak of himself. Maybe you should ask yourself?",
+				"<b>hmody3000</b> не очень любит рассказывать о себе. Но, возможно, он вам сам всё расскажет?"
+			],
+			[
+				"okay thank you",
+				"i want to contact him",
+				"im female",
+			]
+		),
+
+		new Question(
+			"why contact hmody3000",
+			[
+				"Alright, I got it. Well, what do you want?",
+				"Хорошо, я понял. Можно ли узнать, откуда ты к нам пришёл?",
+				"Хорошо, я понял. Можно ли узнать, откуда ты к нам пришла?"
+			],
+			[
+				// copied from "nice to meet you", see below
+			]
+		),
+
+		new Question(
+			"from search engine",
+			[
+				"Am I indexed? Lol. Okay. What do you want then?",
+				"Ха, они всё ещё индексируют этот сайт? Оке-е-ей.<br/>Хорошо. Что тебя сюда привело?"
+			],
+			[
+				"i want to contact hmody3000",
+				"tlauncher-contact",
+				"i dunno why im here",
+			]
+		),
+
+		new Question(
+			"from other",
+			[
+				"Alrihgt. What brought you here?",
+				"Понятно. Что тебя сюда привело?"
+			],
+			[
+				// copied from "from search engine"
+			]
+		),
+
+		new Question(
+			"from tlauncher",
+			[
+				"This is cool! Well, what brought you here?",
+				"Это круто! Говорят, им пользуется большое количество <!--школьников-->людей, но по ссылкам кликают только единицы. Представляешь?<br/>Ну ладно, не важно. Так что тебя сюда привело?"
+			],
+			[
+				"tlauncher-contact",
+				"tlauncher-get source",
+				"i dunno why im here",
+			]
+		),
+
+		new Question(
+			"from tlauncher 2",
+			[
+				"Of course!",
+				"Да, конечно! Вот ещё варианты:"
+			],
+			[
+				// copied from "from tlauncher"
+			]
+		),
+
+		new Question(
+			"tlauncher-get source",
+			[
+				"<br/><a href=\"http://tlaun.ch/source\">http://tlaun.ch/source</a>",
+				"Исходники TLauncher можно найти здесь:<br/><a href=\"http://tlaun.ch/source\">http://tlaun.ch/source</a>"
+			],
+			[
+				"thank you",
+				"from tlauncher 2",
+			]
+		),
+
+		new Question(
+			"tlauncher-thank",
+			[
+				"Wow! Thank you!",
+				"Вау! Отлично, я ему обязательно передам! <!--на самом деле нет-->"
+			],
+			[
+				"thank you",
+				"tlauncher-thank-bymyself",
+				"from tlauncher 2",
+			]
+		),
+
+		new Question(
+			"tlauncher-contact",
+			[
+				"To contact? What is the problem?",
+				"Связаться? Можно ли узнать, по какому вопросу?"
+			],
+			[
+				"tlauncher-have problem",
+				"tlauncher-suggestion",
+				"tlauncher-blah blah",
+				"tlauncher-thank",
+			]
+		),
+
+		new Question(
+			"tlauncher-have problem",
+			[
+				"I'd suggest you to contact support instead of developer himself. What is your preference?",
+				"В таком случае лучше связаться с поддержкой, а не с разработчиком. Где тебе удобнее общаться?"
+			],
+			[
+				"tlauncher-contact support via social network",
+				"tlauncher-contact support email",
+				"tlauncher-anyway contact hmody3000",
+			]
+		),
+
+		new Question(
+			"tlauncher-contact support via social network",
+			[
+				"Please visit <a href=\"http://tlaun.ch/fb\">our Facebook page</a> and start messaging. We'll answer you ASAP.",
+				"Поддержка оказывается через <a href=\"http://tlaun.ch/vk\">паблик ВКонтакте</a>. Напиши им через меню сообщений сообществу, и тебе ответят."
+			],
+			[
+				"thank you",
+				"tlauncher-contact support email though",
+			]
+		),
+
+		new Question(
+			"tlauncher-contact support email",
+			[
+				'Copy e-mail: <ul><li><a href="javascript: //" onclick="return mail(this);">'+reverse('ur.rehcnualt@troppus')+'</a> <span id="copied" style="display: none; opacity: 0;"></span></ul>',
+				'В этом случае тебе следует написать сюда: <ul><li><a href="javascript: //" onclick="return mail(this);">'+reverse('ur.rehcnualt@troppus')+'</a> <span id="copied" style="display: none; opacity: 0;"></span></ul>'
+			],
+			[
+				"thank you",
+			]
+		),
+
+		new Question(
+			"i dunno why im here",
+			[
+				"Ahaha, that's okay! Hm.. Wanna watch some coubs?",
+				"Хах, бывает! Ну, я могу показать тебе небольшую коллекцию своих любимых коубов. Хочешь?"
+			],
+			[
+				"show coub",
+				"end"
+			],
+			null,
+			false,
+			function() {
+				if(Coubs.isEmpty()) {
+					this.text = [
+						"Ahaha, that's okay! Hm.. Wanna watch some coubs?.....<br/>Well, I can't find them, sorry.",
+						"Хах, бывает. Ну, я могу показать тебе небольшую коллекцию своих любимых коубов...<br/>... или нет... Что-то найти их не могу..."
+					];
+					this.answers = [
+						"well okay",
+					];
+				}
+			}
+		),
+
+		new Question(
+			"contact hmody3000",
+			[
+				'Alright.<ul><li> <a href="https://t.me/hmody_3000" aria-label="hmody3000 в телеграм">Telegram: @hmody_3000</a><li> <a href="javascript: //" aria-label="электронная почта hmody3000" onclick="return mail(this);">contact@'+ window.location.hostname +'</a> <span id="copied" style="display: none; opacity: 0;"></span></ul>',
+				'Хорошо.<ul><li> <a href="https://t.me/hmody_3000" aria-label="hmody3000 at telegram">Telegram: @hmody_3000</a><li> <a href="javascript: //" aria-label="e-mail of hmody3000" onclick="return mail(this);">contact@'+ window.location.hostname +'</a> <span id="copied" style="display: none; opacity: 0;"></span></ul>'
+			],
+			[
+				"thank you",
+			],
+			[
+				"Contact hmody3000",
+				"Связаться с hmody3000"
+			]
+		),
+
+		new Question(
+			"thank you",
+			[
+				"Do you want something else?",
+				"Что нибудь ещё?"
+			],
+			[
+				"who is hmody3000",
+				"i want to contact hmody3000",
+				"no nothing",
+			],
+			null,
+			true,
+			function() {
+				if(Coubs.isEmpty()) {
+					this.answers = [
+						"who is hmody3000",
+						"i want to contact hmody3000",
+						"end",
+					];
+				}
+			}
+		),
+
+		new Question(
+			"no nothing",
+			[
+				"Well, I can show some Coubs. Do you want it?",
+				"Могу показать коубы! Хочешь?"
+			],
+			[
+				"show coub",
+				"end",
+			]
+		),
+
+		new Question(
+			"show coub",
+			[
+				'<div id="coub_holder"><iframe id="coub_frame" allowfullscreen="true" frameborder="0"></iframe></div><script type="text/javascript">Coubs.prepare();</script>'
+			],
+			[
+				"moar coub",
+				"previous coub",
+				"no more coub",
+			],
+			null,
+			false,
+			null, // prepare
+			function() {
+				Coubs.postpone();
+			},
+		),
+
+		new Question(
+			"end",
+			[
+				"That's all. See ya!",
+				"Ну, больше меня ничему не научили, поэтому показать мне больше нечего. Увидимся!"
+			],
+			[
+				"reload",
+			],
+			[
+				"Good bye!",
+				"До встречи!"
+			]
+		),
+	],
+	copyAnswers: function(from, to) {
+		this.getByName(to).answers = this.getByName(from).answers;
+	},
+	bindPermissions: function(from, to) {
+		var fromPerimission = this.getByName(from), toPermission = this.getByName(to);
+		toPermission.isPermitted = fromPerimission.isPermitted.bind(fromPerimission);
+	}
+};
+
+Questions.bindPermissions("contact hmody3000", "why contact hmody3000");
+Questions.copyAnswers("nice to meet you", "why contact hmody3000");
+Questions.copyAnswers("from search engine", "from other");
+Questions.copyAnswers("from tlauncher", "from tlauncher 2");
+
+var female = new Question(
+	"im female",
+	[
+		"",
+		"О, хорошо, я это запомню."
+	],
+	[
+		"back",
+	]
+);
+female.isPermitted = function() {
+	return sex !== 1;
+};
+
+Questions.list.push(female);
+
+$(document).ready(function() {
+	Questions.getByName("start").changeTo();
+});

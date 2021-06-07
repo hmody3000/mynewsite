@@ -1,0 +1,185 @@
+function random(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function reverse(string) {
+  return string.split('').reverse().join('');
+}
+
+function iterable(obj) {
+	return typeof obj !== "undefined" && obj !== null && (typeof Symbol !== "undefined"? typeof obj[Symbol.iterator] !== "undefined" : typeof obj.length !== "undefined");
+}
+
+function l(text) {
+	if(iterable(text)) {
+		if(text.length == 1) {
+			return text[0];
+		}
+
+		if(lang == 0 || text.length == 2) {
+			return text[lang];
+		}
+
+		if(sex == 1) {
+			return text[2];
+		} else {
+			return text[1];
+		}
+	} else {
+		return null;
+	}
+}
+
+function sh(elem, text) {
+	if(text == null) {
+		text = "";
+	}
+	$(elem).html(text);	
+}
+
+function lsh(elem, text) {
+	sh(elem, l(text));
+}
+
+function blink(elem, duration) {
+	var
+	onHidden = function() {
+		elem.hide();
+	},
+	onShown = function() {
+		elem.stop().animate({opacity: 0}, duration, onHidden);
+	};
+
+	onHidden.bind(this);
+	onShown.bind(this);
+
+	elem.show().stop().animate({opacity: 1}, duration, onShown);
+}
+
+function mail(elem) {
+	_paq.push(['trackEvent', 'contact_act', 'email']);
+	try {
+		elem.href = "mailto:" + elem.innerHTML;
+		elem.onclick = "";
+		return !clipboard.html(elem);
+	} catch(e) {
+		console.log(e);
+		return true;
+	}
+}
+
+function Answer(name, text, destination) {
+	this.name = name;
+	this.text = text;
+	this.destination = destination;
+	this.go = function() {}
+
+	this.isPermitted = function(question) {
+		var dependantQuestion = Questions.getByName(this.name) || Questions.getByName(this.destination);
+		return dependantQuestion == null || dependantQuestion.isPermitted();
+	}
+
+	this.prepare = function(question) {
+		if(!this.destination) {
+			this.destination = this.name;
+		}
+
+		switch(typeof this.destination) {
+			case "string":
+				this.go = function() {
+					_paq.push(['trackEvent', 'answer_click', this.name]);
+					Questions.getByName(this.destination).changeTo();
+					this.action();
+				}.bind(this);
+				break;
+			default:
+				this.go = this.destination;
+				break;
+		}
+	}
+
+	this.action = function() {
+	}
+}
+
+function Question(name, text, answers, head, permitMultiple, prepare, after) {
+	this.name = name;
+	this.text = text;
+	this.answers = answers;
+	this.head = head;
+
+	this.permitMultiple = permitMultiple;
+	this.shownOnce = false;
+	this.prepare = prepare? prepare.bind(this) : function(){}
+	this.after = after? after.bind(this) : function(){}
+
+	this.changeTo = function(forced) {
+		if(!forced && !this.isPermitted()) {
+			throw ["is not permitted", this];
+		}
+
+		if(questionCurrent != null) {
+			questionCurrent.after();
+		}
+
+		questionCurrent = this;
+
+		this.shownOnce = true;
+		this.prepare();
+
+		console.log("showing question:", this);
+		_paq.push(['trackEvent', 'question_change', this.name]);
+
+		Questions.last = Questions.current;
+		Questions.current = this;
+
+		lsh("#quest_head", this.head);
+		lsh("#quest_body", this.text);
+
+		var answersElem = $("#quest_answers");
+		answersElem.show();
+		answersElem.html("");
+
+		for(var i = 0; i < this.answers.length; i++) {
+			var answer = this.answers[i];
+
+			if(typeof answer === "string") {
+				answer = Answers.getByName(answer);
+			}
+
+			if(!answer.isPermitted()) {
+				console.log("won't show answer", answer);
+				continue;
+			}
+
+			answer.prepare();
+
+			console.log("showing answer:", answer);
+
+			$('<button/>', {
+				id: "answer_" + answer.name
+			})
+			.attr("class", "quest_answer") // IE, fuck u
+			.appendTo(answersElem)
+			.bind("click", function() {
+				Answers.getByName(this.id.substring(7)).go();
+			})
+			.html(l(answer.text));
+		}
+
+		if($('#quest_head').html() == '') {
+			$('#quest_body').focus();
+		} else {
+			$('#quest_head').focus();
+		}
+	}
+
+	this.isPermitted = function() {		
+		return this.permitMultiple || !this.shownOnce;
+	}
+}
+
+var questionCurrent = null;
+var lang = (window.navigator.userLanguage || window.navigator.language).indexOf("ru") > -1? 1 : 0;
+var sex = 0; // 0 - male, 1 - female
+var c = 0;
